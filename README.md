@@ -109,4 +109,41 @@ Primero clonamos el repositorio, con esto podremos acceder a los archivos de los
     cd ~
     git clone https://github.com/osrf/subt.git
     
-Ahora tenemos una carpeta subt en nuestra carpeta personal (u otro directorio si así se escogió). Para llegar a los mundos seguimos el siguiente path: subt/subt_ign/worlds/. En esta última carpeta tenemos los archivos .sdf de los distintos mundos que vienen con el repositorio, como se mencionó anteriormente en vez de crear nuestro propio archivo de mundo modificaremos uno ya existente, en el caso de prueba elegimos cave_circuit_practice_01.sdf.
+Ahora tenemos una carpeta subt en nuestra carpeta personal (u otro directorio si así se escogió). Para llegar a los mundos seguimos el siguiente path: subt/subt_ign/worlds/. En esta última carpeta tenemos los archivos .sdf de los distintos mundos que vienen con el repositorio, como se mencionó anteriormente en vez de crear nuestro propio archivo de mundo modificaremos uno ya existente, en el caso de prueba elegimos cave_circuit_practice_01.sdf. Si abrimos el archivo con un editor de texto notaremos que tienen varios tags, pero a nosotros sólo nos interesa <include>, ya que este llama a los modelos y les da su posición en el espacio. Muchas veces el resto de los elementos que no sean de este tipo se pueden simplemente borrar con algunas excepciones. Se puede empezar borrando algunos elementos o mejor aún reemplazar todo por lo siguiente, que es un mundo que solamente contiene la entrada a la mina:
+    
+    <?xml version="1.0" ?>
+    <sdf version="1.6">
+      <world name="cave_circuit_practice_01">
+
+        <physics name="1ms" type="ode">
+          <max_step_size>0.004</max_step_size>
+          <real_time_factor>1.0</real_time_factor>
+        </physics>
+
+        <scene>
+          <ambient>0.1 0.1 0.1 1.0</ambient>
+          <background>0 0 0 1.0</background>
+          <grid>false</grid>
+          <origin_visual>false</origin_visual>
+        </scene>
+
+        <!-- The staging area -->
+
+        <include>
+          <static>true</static>
+          <name>staging_area</name>
+          <pose>0 6 0 0 0 0</pose>
+          <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Cave Starting Area Type B</uri>
+        </include>
+
+        <include>
+          <name>artifact_origin</name>
+          <pose>10 0.0 0.0 0 0 0</pose>
+          <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Fiducial</uri>
+        </include>
+
+      </world>
+    </sdf>
+    
+A partir de esta base se pueden ir agregando piezas ocupando el tag <include>, este requiere de ciertos parámetros. Por defecto siempre mantenemos <static> como true para los modelos, y es importante que todos los nombres sean distintos, de lo contrario la simulación no cargará. <pose> determina la posición en el espacio del modelo, siendo los tres primeros números las coordenadas en los ejes x, y, z y las últimas tres los ángulos con los respectivos ejes. Por último, <uri> llama al modelo o pieza, para esto se debe entregar un enlace como el que se ve en el ejemplo. En https://docs.google.com/spreadsheets/d/1P-aFQXw79qmT6hsnNeHionBNCPDuD1D6a7Qvi7W_NoU/edit?usp=sharing se elaboró una tabla que muestra el nombre de todos las piezas del repositorio, y en la pestaña cave se listan todas aquellas que corresponden a pedazos de cueva incluyendo fotos y sus uri. Esto es todo lo que se necesita para crear un mundo personalizado, ahora veremos como reemplazar este archivo .sdf en el contenedor para poder verlo en la simulación.
+    
