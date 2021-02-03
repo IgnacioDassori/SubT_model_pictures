@@ -151,3 +151,6 @@ Para reemplazar nuestro archivo de mundo modificado corremos lo siguiente desde 
 
     cd ~/subt/docker
     docker cp /home/Usuario/subt/subt_ign/worlds/cave_circuit_practice_01.sdf container_id:/home/developer/subt_ws/install/share/subt_ign/worlds/cave_circuit_practice_01.sdf
+    
+Ahora al correr la simulación se verá lo siguiente:
+![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/Captura%20de%20pantalla%20de%202021-02-03%2014-21-44.png)
