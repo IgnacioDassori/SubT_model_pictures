@@ -101,4 +101,6 @@ En una nueva terminal reproducimos el bagfile que hayamos grabado:
     rosbag play ~/bagfiles/file.bag
 
 ## 2. Crear un ambiente de simulación
-Para crear un ambiente de simulación hay que trabajar 
+Para crear un ambiente de simulación hay dos elementos principales con los que hay que trabajar, mundos y modelos. Para esto debemos saber modificar archivos .sdf y .dae, que será lo que veremos a continuación.
+
+### 2.1 Modificar mundo
