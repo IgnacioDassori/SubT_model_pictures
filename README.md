@@ -60,3 +60,12 @@ Una vez hecho esto solo queda correr el script, para esto nos dirigimos al direc
     bash copiar_mina_sal.sh
     
 Probemos ahora correr nuevamente la simulación y deberíamos ver una mina distinta con los modelos personalizados como se muestra en la siguiente imagen:
+![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/Captura%20de%20pantalla%20de%202021-02-03%2010-24-13.png)
+
+### 1.4 Controlar el vehículo
+
+### 1.5 Visualizar tópicos con Rviz
+
+### 1.6 Grabar rosbag
+
+### 1.7 Reproducir rosbag
