@@ -76,7 +76,7 @@ Ahora que tenemos corriendo tanto la simulación como teleop y podemos manejar e
     rosrun rviz rviz
     
 Debiesemos aparecer una ventana como la que se muestra a continuación:
-
+![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/rviz.png)
 
 
 ### 1.6 Grabar rosbag:
