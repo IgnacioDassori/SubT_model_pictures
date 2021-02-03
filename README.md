@@ -70,8 +70,15 @@ Para manejar el camión usamos un comando teleop personalizado que viene incluid
     
 Se debe conectar un joystick ya sea por usb o bluetooth, de lo contrario aparecerá un error al correr teleop que nos indicará que no se ha hayado un joystick y que seguirá buscando cada segundo. En controles de Xbox el camión se maneja manteniendo presionado el botón A y virando con el stick izquierdo. En controles de PS es el botón X el que se debe mantener presionado.
 
-### 1.5 Visualizar tópicos con Rviz
+### 1.5 Visualizar data de sensores:
+Ahora que tenemos corriendo tanto la simulación como teleop y podemos manejar el vehículo por la mina veamos cómo podemos visualizar la información registrada por los sensores. Para esto usamos Rviz, en una nueva terminal lo corremos con la siguiente línea:
 
-### 1.6 Grabar rosbag
+    rosrun rviz rviz
+    
+Debiesemos aparecer una ventana como la que se muestra a continuación:
 
-### 1.7 Reproducir rosbag
+
+
+### 1.6 Grabar rosbag:
+
+### 1.7 Reproducir rosbag:
