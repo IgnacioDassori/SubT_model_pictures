@@ -99,3 +99,6 @@ Para reproducir el bagfile debemos tener instalada una versión modificada de lo
 En una nueva terminal reproducimos el bagfile que hayamos grabado:
 
     rosbag play ~/bagfiles/file.bag
+
+## 2. Crear un ambiente de simulación
+Para crear un ambiente de simulación hay que trabajar 
