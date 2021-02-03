@@ -47,4 +47,8 @@ docker cp $host_path'/models/cave cap type b'                            $contai
 docker cp $host_path'/models/rough tunnel tile 4-way intersection'       $container_id:$container_path
 docker cp $host_path'/models/cave 3 way 01 type b'                       $container_id:$container_path
 ```
-Lo primero que se debe hacer es asegurar que el path del host sea correcto, ya que la carpeta Modelo_Room&Pillar puede encontrarse en otro directorio. 
+Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room&Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor. Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
+
+    docker ps
+    
+
