@@ -79,7 +79,8 @@ Debiese aparecer una ventana como la que se muestra a continuación:
 ![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/rviz.png)
 
 Cambiamos el Fix Frame a uno que nos acomode más, esta será la perspectiva que muestra Rviz. Podemos elegir X1 para seguir al vehículo mientras este recorre el túnel. Abajo a la izquierda seleccionamos Add para añadir un método de visualización, escogamos PointCloud2 que fue el que usamos durante la práctica para visualizar las paredes de la mina mediante el sensor láser. Luego se debe seleccionar uno de los tópicos del camión, en este caso /X1/front_laser_velodyne/points con lo que deberíamos poder ver la data registrada por el sensor. Se pueden variar parámetros como el grosor e intensidad de las líneas para lograr una mejor visualización.
-![Alt Text]()
+![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/rviz_cloudpoint2.png)
+
 ### 1.6 Grabar rosbag:
 
 ### 1.7 Reproducir rosbag:
