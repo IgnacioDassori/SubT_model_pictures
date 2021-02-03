@@ -10,9 +10,37 @@ En este tutorial se asume que el usuario ya ha instalado Docker. Si este no es e
 Luego para iniciar un contenedor basta correr las siguientes líneas de código:
 
     cd amtc-subt-testbed/
+    bash script/build
     bash script/run
     catkin_make install
-    bash script/build
 
+Estas se deben correr cada vez que uno quiera iniciar un nuevo contenedor a excepción de la segunda, que sólo es necesaria la primera vez. Con esto tenemos nuestro container listo para empezar a simular con los mundos y modelos predeterminados, pero lo que queremos es lograr correr los mundos y modelos custom así que veremos como hacer eso a continuación.
+
+Si se desea se puede comprobar que todo haya funcionado abriendo una simulación con uno de los mapas predeterminados con la siguiente línea en la terminal del contenedor:
+
+    ign launch -v 4 cave_circuit.ign    worldName:=cave_circuit_practice_01    robotName1:=X1    robotConfig1:=AMTC_LHD_SENSOR_CONFIG_1 localModel:=true enableGroundTruth:=true
 ### 1.3 Correr el script:
 Antes de correr el script debemos asegurarnos de que la carpeta que contiene los archivos se encuentre en el directorio de preferencia (en este caso Downloads) y modificar algunos aspectos del script
+
+```shell
+#!/bin/sh
+
+container_id=""
+echo $container_id
+host_path="/home/idassori/Downlaods/Modelo_Room&Pillar"
+echo $host_path
+container_path="/home/developer/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models"
+
+# Mundo
+docker cp $host_path/cave_circuit_practice_01.sdf $container_id:/home/developer/subt_ws/install/share/subt_ign/worlds/cave_circuit_practice_01.sdf
+
+# Paquetes
+docker cp $host_path'/models/cave straight 01 type b'                    $container_id:$container_path
+docker cp $host_path'/models/cave starting area type b'                  $container_id:$container_path
+docker cp $host_path'/models/cave straight 02 type b'                    $container_id:$container_path
+docker cp $host_path'/models/cave straight 04 type b'                    $container_id:$container_path
+docker cp $host_path'/models/cave straight 05 type b'                    $container_id:$container_path
+docker cp $host_path'/models/cave cap type b'                            $container_id:$container_path
+docker cp $host_path'/models/rough tunnel tile 4-way intersection'       $container_id:$container_path
+docker cp $host_path'/models/cave 3 way 01 type b'                       $container_id:$container_path
+```
