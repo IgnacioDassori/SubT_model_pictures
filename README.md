@@ -104,3 +104,9 @@ En una nueva terminal reproducimos el bagfile que hayamos grabado:
 Para crear un ambiente de simulación hay dos elementos principales con los que hay que trabajar, mundos y modelos. Para esto debemos saber modificar archivos .sdf y .dae, que será lo que veremos a continuación.
 
 ### 2.1 Modificar mundo
+Primero clonamos el repositorio, con esto podremos acceder a los archivos de los mundos con mayor facilidad y después de modificarlos bastará con reemplazarlos en el contenedor:
+
+    cd ~
+    git clone https://github.com/osrf/subt.git
+    
+Ahora tenemos una carpeta subt en nuestra carpeta personal (u otro directorio si así se escogió). Para llegar a los mundos seguimos el siguiente path: subt/subt_ign/worlds/. En esta última carpeta tenemos los archivos .sdf de los distintos mundos que vienen con el repositorio, como se mencionó anteriormente en vez de crear nuestro propio archivo de mundo modificaremos uno ya existente, en el caso de prueba elegimos cave_circuit_practice_01.sdf.
