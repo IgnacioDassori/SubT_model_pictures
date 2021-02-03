@@ -50,5 +50,6 @@ docker cp $host_path'/models/cave 3 way 01 type b'                       $contai
 Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room&Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor. Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
 
     docker ps
-    
-
+  
+Por ejemplo en el caso de la imagen el id es 634c607d0d1c.
+![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/Captura%20de%20pantalla%20de%202021-02-03%2009-22-24.png)
