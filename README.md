@@ -30,7 +30,7 @@ Antes de correr el script debemos asegurarnos de que la carpeta que contiene los
 
 container_id=""
 echo $container_id
-host_path="/home/idassori/Downloads/Modelo_Room_Pillar"
+host_path="/home/Usuario/Downloads/Modelo_Room_Pillar"
 echo $host_path
 container_path="/home/developer/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models"
 
@@ -47,7 +47,7 @@ docker cp $host_path'/models/cave cap type b'                            $contai
 docker cp $host_path'/models/rough tunnel tile 4-way intersection'       $container_id:$container_path
 docker cp $host_path'/models/cave 3 way 01 type b'                       $container_id:$container_path
 ```
-Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room_Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor (container_id debe quedar como un string!). Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
+Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room_Pillar puede encontrarse en otro directorio. Además, el nombre del usuario debe cambiarse según el que se tenga en la computadora. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor (container_id debe quedar como un string!). Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
 
     docker ps
   
@@ -145,5 +145,9 @@ Ahora tenemos una carpeta subt en nuestra carpeta personal (u otro directorio si
       </world>
     </sdf>
     
-A partir de esta base se pueden ir agregando piezas ocupando el tag <include>, este requiere de ciertos parámetros. Por defecto siempre mantenemos <static> como true para los modelos, y es importante que todos los nombres sean distintos, de lo contrario la simulación no cargará. <pose> determina la posición en el espacio del modelo, siendo los tres primeros números las coordenadas en los ejes x, y, z y las últimas tres los ángulos con los respectivos ejes. Por último, <uri> llama al modelo o pieza, para esto se debe entregar un enlace como el que se ve en el ejemplo. En https://docs.google.com/spreadsheets/d/1P-aFQXw79qmT6hsnNeHionBNCPDuD1D6a7Qvi7W_NoU/edit?usp=sharing se elaboró una tabla que muestra el nombre de todos las piezas del repositorio, y en la pestaña cave se listan todas aquellas que corresponden a pedazos de cueva incluyendo fotos y sus uri. Esto es todo lo que se necesita para crear un mundo personalizado, ahora veremos como reemplazar este archivo .sdf en el contenedor para poder verlo en la simulación.
+A partir de esta base se pueden ir agregando piezas ocupando el tag <include>, este requiere de ciertos parámetros. Por defecto siempre mantenemos <static> como true para los modelos, y es importante que todos los nombres sean distintos, de lo contrario la simulación no cargará. <pose> determina la posición en el espacio del modelo, siendo los tres primeros números las coordenadas en los ejes x, y, z y las últimas tres los ángulos de rotación con respecto a los ejes. Por último, <uri> llama al modelo o pieza, para esto se debe entregar un enlace como el que se ve en el ejemplo. En https://docs.google.com/spreadsheets/d/1P-aFQXw79qmT6hsnNeHionBNCPDuD1D6a7Qvi7W_NoU/edit?usp=sharing se elaboró una tabla que muestra el nombre de todos las piezas del repositorio, y en la pestaña cave se listan todas aquellas que corresponden a pedazos de cueva incluyendo fotos y sus uri. Esto es todo lo que se necesita para crear un mundo personalizado, ahora veremos como reemplazar este archivo .sdf en el contenedor para poder verlo en la simulación.
     
+Para reemplazar nuestro archivo de mundo modificado corremos lo siguiente desde una terminal fuera del contenedor. Notar que se debe reemplazar Usuario por el nombre de usuario del pc y se necesita la id del contenedor, por lo que si no se tiene se deberá correr antes docker ps.
+
+    cd ~/subt/docker
+    docker cp /home/Usuario/subt/subt_ign/worlds/cave_circuit_practice_01.sdf container_id:/home/developer/subt_ws/install/share/subt_ign/worlds/cave_circuit_practice_01.sdf
