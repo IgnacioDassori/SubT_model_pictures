@@ -81,6 +81,11 @@ Debiese aparecer una ventana como la que se muestra a continuación:
 Cambiamos el Fix Frame a uno que nos acomode más, esta será la perspectiva que muestra Rviz. Podemos elegir X1 para seguir al vehículo mientras este recorre el túnel. Abajo a la izquierda seleccionamos Add para añadir un método de visualización, escogamos PointCloud2 que fue el que usamos durante la práctica para visualizar las paredes de la mina mediante el sensor láser. Luego se debe seleccionar uno de los tópicos del camión, en este caso /X1/front_laser_velodyne/points con lo que deberíamos poder ver la data registrada por el sensor. Se pueden variar parámetros como el grosor e intensidad de las líneas para lograr una mejor visualización.
 ![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/rviz_cloudpoint2.png)
 
-### 1.6 Grabar rosbag:
+### 1.6 Grabar y reproducir con rosbag:
+Por último se explicará brevemente cómo grabar información de los tópicos en un bagfile usando rosbag, y cómo reproducir esta información después. Cabe mencionar que durante la práctica se grabaron 16 bagfiles de recorridos por la mina con diferentes configuraciones de sensores, sin embargo estos archivos no se encuentran en un git debido a su gran peso. Para grabar un bagfile primero se deben tener corriendo los contenedores de la simulación y teleop de modo que tengamos tópicos siendo publicados. Podemos ver información sobre los tópicos con rostopic list -v. Para grabar ejecutamos la siguiente línea:
 
-### 1.7 Reproducir rosbag:
+    rosbag record -a
+    
+Con esto grabaremos todos los tópicos publicados, sin embargo quizás no querramos grabar algunos tópicos, como la imagen registrada por la cámara del camión, que puede llegar a pesar bastante dependiendo del largo del recorrido. En este caso podemos cambiar -a por un listado de los tópicos que nos interesa grabar, como en el siguiente ejemplo que ḿuestra los tópicos grabados para los bagfiles de la práctica:
+
+    rosbag record /X1/FL_wheel/command /X1/FR_wheel/command /X1/RL_wheel/command /X1/RR_wheel/command /X1/base_link_to_front_base_link_joint/cmd_vel /X1/bucket_boom_joint/command /X1/bucket_bucket_joint/command /X1/cmd_vel /X1/front/optical/depth /X1/front_laser_hokuyo_sensor/points /X1/front_laser_velodyne/points /X1/imu/data /X1/odom /X1/plan_cmd_vel /X1/pose /X1/pose_static /X1/rear_laser_hokuyo_sensor/points /X1/rear_laser_velodyne/points /clock /diagnostics /joy /joy/set_feedback /rosout /rosout_agg /subt/run_clock /subt/score /tf /tf_static
