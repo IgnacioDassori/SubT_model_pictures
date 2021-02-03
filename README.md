@@ -3,7 +3,7 @@ El objetivo de este documento es instruir al lector en cómo utilizar y replicar
 ## 1. Cómo correr la simulación
 Como se mencionó anteriormente, esta sección explicará cómo se puede correr el ambiente de simulación logrado al final de la práctica, que en este caso corresponde al modelo de una mina Room and Pillar. Para comenzar lo primero que necesitamos es tener los archivos de los resultados.
 ### 1.1 Obtener los archivos:
-Todos los archivos necesarios para poder correr la simulación se encuentran en el siguiente Gitlab https://gitlab.com/finostro/3d-slam/-/tree/master/amtc-subt-testbed/amtc-packages, de donde se deben descargar todos los contenidos de la carpeta Modelo_Room&Pillar. Lo primero es una carpeta llamada models, esta contiene los archivos de todos los modelos que fueron modificados de alguna u otra manera, los cuales tendremos que reemplazar una vez creado un container nuevo. Lo segundo es un archivo sdf que corresponde al mundo, es decir el modelo de la mina por el que se moverá el vehículo. En este archivo se indica la posición tridimensional de las distintas piezas utilizadas y tiene un nombre particular, esto se debe a que en vez de crear un mundo nuevo reemplazaremos la información de uno existente. Correr la simulación desde un mundo completamente custom puede llevar a ciertos problemas que podemos evitar fácilmente aplicando este truco. Por último tenemos un pequeño script que nos ayuda a reemplazar los archivos, pero de todos modos se explicará como reemplazar modelos y mundos manualmente en la segunda parte del tutorial.
+Todos los archivos necesarios para poder correr la simulación se encuentran en el siguiente Gitlab https://gitlab.com/finostro/3d-slam/-/tree/master/amtc-subt-testbed/amtc-packages, de donde se deben descargar todos los contenidos de la carpeta Modelo_Room_Pillar. Lo primero es una carpeta llamada models, esta contiene los archivos de todos los modelos que fueron modificados de alguna u otra manera, los cuales tendremos que reemplazar una vez creado un container nuevo. Lo segundo es un archivo sdf que corresponde al mundo, es decir el modelo de la mina por el que se moverá el vehículo. En este archivo se indica la posición tridimensional de las distintas piezas utilizadas y tiene un nombre particular, esto se debe a que en vez de crear un mundo nuevo reemplazaremos la información de uno existente. Correr la simulación desde un mundo completamente custom puede llevar a ciertos problemas que podemos evitar fácilmente aplicando este truco. Por último tenemos un pequeño script que nos ayuda a reemplazar los archivos, pero de todos modos se explicará como reemplazar modelos y mundos manualmente en la segunda parte del tutorial.
 ### 1.2 Iniciar un contenedor:
 En este tutorial se asume que el usuario ya ha instalado Docker. Si este no es el caso seguir el siguiente tutorial: https://github.com/osrf/subt/wiki/Docker%20Install. Ocuparemos una versión modificada de los paquetes de Darpa Subterranean Challange que contiene el nuevo vehículo y configuraciones de sensores, entre otras cosas. Para esto se debe descargar la carpeta amtc-subt-testbed del siguiente git: https://gitlab.com/finostro/3d-slam. En este caso se realizó el pull desde la carpeta personal, ya que esto nos da un acceso más directo a amtc-subt-testbed.
 
@@ -30,7 +30,7 @@ Antes de correr el script debemos asegurarnos de que la carpeta que contiene los
 
 container_id=""
 echo $container_id
-host_path="/home/idassori/Downlaods/Modelo_Room&Pillar"
+host_path="/home/idassori/Downloads/Modelo_Room_Pillar"
 echo $host_path
 container_path="/home/developer/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models"
 
@@ -47,9 +47,16 @@ docker cp $host_path'/models/cave cap type b'                            $contai
 docker cp $host_path'/models/rough tunnel tile 4-way intersection'       $container_id:$container_path
 docker cp $host_path'/models/cave 3 way 01 type b'                       $container_id:$container_path
 ```
-Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room&Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor. Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
+Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room_Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor. Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
 
     docker ps
   
 Por ejemplo en el caso de la imagen el id es 634c607d0d1c.
 ![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/Captura%20de%20pantalla%20de%202021-02-03%2009-22-24.png)
+
+Una vez hecho esto solo queda correr el script, para esto nos dirigimos al directorio donde esté ubicado y lo ejecutamos.
+
+    cd ~/Downloads/Modelo_Room_Pillar
+    bash copiar_mina_sal.sh
+    
+Probemos ahora correr nuevamente la simulación y deberíamos ver una mina distinta con los modelos personalizados como se muestra en la siguiente imagen:
