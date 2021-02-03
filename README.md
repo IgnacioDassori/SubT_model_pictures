@@ -47,7 +47,7 @@ docker cp $host_path'/models/cave cap type b'                            $contai
 docker cp $host_path'/models/rough tunnel tile 4-way intersection'       $container_id:$container_path
 docker cp $host_path'/models/cave 3 way 01 type b'                       $container_id:$container_path
 ```
-Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room_Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor. Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
+Lo primero es asegurarse que el path del host sea correcto, ya que la carpeta Modelo_Room_Pillar puede encontrarse en otro directorio. Notamos que la variable container_id esta vacia, aqui debemos rellenar con el id de nuestro contenedor (container_id debe quedar como un string!). Para saber cual es la id corremos en un nuevo terminal la siguiente línea:
 
     docker ps
   
@@ -62,7 +62,13 @@ Una vez hecho esto solo queda correr el script, para esto nos dirigimos al direc
 Probemos ahora correr nuevamente la simulación y deberíamos ver una mina distinta con los modelos personalizados como se muestra en la siguiente imagen:
 ![Alt Text](https://github.com/IgnacioDassori/SubT_model_pictures/blob/main/Im%C3%A1genes/Captura%20de%20pantalla%20de%202021-02-03%2010-24-13.png)
 
-### 1.4 Controlar el vehículo
+### 1.4 Controlar el vehículo:
+Para manejar el camión usamos un comando teleop personalizado que viene incluido en los paquetes del amtc previamente instalados. En una nueva terminal abrimos un contenedor, pero es importante que el contenedor original siga abierto, ya que necesitamos su id.
+
+    docker exec -it container_id /bin/bash
+    roslaunch amtc_lhd_teleop teleop.launch
+    
+Se debe conectar un joystick ya sea por usb o bluetooth, de lo contrario aparecerá un error al correr teleop que nos indicará que no se ha hayado un joystick y que seguirá buscando cada segundo. En controles de Xbox el camión se maneja manteniendo presionado el botón A y virando con el stick izquierdo. En controles de PS es el botón X el que se debe mantener presionado.
 
 ### 1.5 Visualizar tópicos con Rviz
 
