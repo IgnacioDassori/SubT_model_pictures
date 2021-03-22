@@ -9,7 +9,8 @@ En este tutorial se asume que el usuario ya ha instalado Docker. Si este no es e
 
 Luego para iniciar un contenedor basta correr las siguientes líneas de código:
 
-    cd amtc-subt-testbed/
+    git clone https://gitlab.com/finostro/3d-slam.git
+    cd ~/3d-slam/amtc-subt-testbed/
     bash script/build
     bash script/run
     catkin_make install
